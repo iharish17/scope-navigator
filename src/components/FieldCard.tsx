@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { TrendingUp, TrendingDown, Minus, Users, Briefcase, Trophy, Clock } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -9,12 +10,16 @@ type Field = Tables<"fields">;
 
 interface FieldCardProps {
   field: Field;
-  onClick?: () => void;
 }
 
-const FieldCard = ({ field, onClick }: FieldCardProps) => {
+const FieldCard = ({ field }: FieldCardProps) => {
+  const navigate = useNavigate();
   const iconName = field.icon || "Folder";
   const IconComponent = (LucideIcons as unknown as Record<string, React.ComponentType<{ className?: string }>>)[iconName] || LucideIcons.Folder;
+
+  const handleClick = () => {
+    navigate(`/field/${field.id}`);
+  };
 
   const getTrendIcon = () => {
     switch (field.growth_trend) {
@@ -61,7 +66,7 @@ const FieldCard = ({ field, onClick }: FieldCardProps) => {
   return (
     <Card 
       className="group cursor-pointer hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden border-2 hover:border-primary/30"
-      onClick={onClick}
+      onClick={handleClick}
     >
       <CardContent className="p-6">
         {/* Header */}
