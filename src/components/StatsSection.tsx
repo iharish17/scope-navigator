@@ -50,7 +50,7 @@ const StatsSection = () => {
   const opportunityFields = fields.filter(f => f.competition_level < 50 && (f.growth_trend === 'growing' || f.growth_trend === 'rapidly_growing')).slice(0, 3);
 
   return (
-    <section className="py-20 bg-muted/30">
+    <section id="stats" className="py-20 bg-muted/30 scroll-mt-20">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
