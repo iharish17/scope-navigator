@@ -5,7 +5,7 @@ const Footer = () => {
     { name: "Explore Fields", href: "#explore" },
     { name: "Statistics", href: "#stats" },
     { name: "About Us", href: "#about" },
-    { name: "Contact", href: "#" },
+    { name: "Contact", href: "/contact" },
   ];
 
   const resources = [
