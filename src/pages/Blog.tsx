@@ -103,20 +103,24 @@ const Blog = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {blogPosts.map((post) => (
               <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="aspect-video overflow-hidden">
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
+                <Link to={`/blog/${post.id}`}>
+                  <div className="aspect-video overflow-hidden">
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                </Link>
                 <CardHeader className="pb-2">
                   <Badge variant="secondary" className="w-fit mb-2">
                     {post.category}
                   </Badge>
-                  <h2 className="font-display text-lg font-semibold leading-tight hover:text-primary transition-colors cursor-pointer">
-                    {post.title}
-                  </h2>
+                  <Link to={`/blog/${post.id}`}>
+                    <h2 className="font-display text-lg font-semibold leading-tight hover:text-primary transition-colors cursor-pointer">
+                      {post.title}
+                    </h2>
+                  </Link>
                 </CardHeader>
                 <CardContent className="pb-2">
                   <p className="text-sm text-muted-foreground line-clamp-2">
@@ -134,9 +138,11 @@ const Blog = () => {
                       {post.readTime}
                     </span>
                   </div>
-                  <Button variant="ghost" size="sm" className="gap-1 p-0 h-auto">
-                    Read <ArrowRight className="w-3 h-3" />
-                  </Button>
+                  <Link to={`/blog/${post.id}`}>
+                    <Button variant="ghost" size="sm" className="gap-1 p-0 h-auto">
+                      Read <ArrowRight className="w-3 h-3" />
+                    </Button>
+                  </Link>
                 </CardFooter>
               </Card>
             ))}
