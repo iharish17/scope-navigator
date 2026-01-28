@@ -9,10 +9,10 @@ const Footer = () => {
   ];
 
   const resources = [
-    { name: "Career Guide", href: "#" },
-    { name: "Blog", href: "#" },
-    { name: "FAQs", href: "#" },
-    { name: "Support", href: "#" },
+    { name: "Career Guide", href: "/career-guide" },
+    { name: "Blog", href: "/blog" },
+    { name: "FAQs", href: "/faqs" },
+    { name: "Support", href: "/contact" },
   ];
 
   const socialLinks = [
