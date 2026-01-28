@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { ArrowLeft, Calendar, Clock, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
@@ -7,6 +8,10 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const Blog = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const blogPosts = [
     {
       id: 1,
@@ -72,7 +77,7 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header alwaysVisible />
       
       <main className="pt-24 pb-16">
         <div className="container mx-auto px-4">

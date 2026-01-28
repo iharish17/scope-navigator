@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -51,6 +51,10 @@ const Contact = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
@@ -92,7 +96,7 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header alwaysVisible />
       
       <main className="pt-24 pb-16">
         <div className="container mx-auto px-4">
