@@ -2,22 +2,28 @@ import { useState, useEffect } from "react";
 import { Compass, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
+interface HeaderProps {
+  alwaysVisible?: boolean;
+}
+
+const Header = ({ alwaysVisible = false }: HeaderProps) => {
+  const [isScrolled, setIsScrolled] = useState(alwaysVisible);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(alwaysVisible || window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [alwaysVisible]);
+
+  const showSolidHeader = alwaysVisible || isScrolled;
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+        showSolidHeader
           ? "bg-background/95 backdrop-blur-md shadow-sm border-b"
           : "bg-transparent"
       }`}
@@ -27,12 +33,12 @@ const Header = () => {
           {/* Logo */}
           <a href="/" className="flex items-center gap-2 group">
             <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all ${
-              isScrolled ? 'bg-primary' : 'bg-primary-foreground/10'
+              showSolidHeader ? 'bg-primary' : 'bg-primary-foreground/10'
             }`}>
-              <Compass className={`w-5 h-5 ${isScrolled ? 'text-primary-foreground' : 'text-accent'}`} />
+              <Compass className={`w-5 h-5 ${showSolidHeader ? 'text-primary-foreground' : 'text-accent'}`} />
             </div>
             <span className={`font-display font-bold text-xl ${
-              isScrolled ? 'text-foreground' : 'text-primary-foreground'
+              showSolidHeader ? 'text-foreground' : 'text-primary-foreground'
             }`}>
               Scope<span className="text-accent">Hope</span>
             </span>
@@ -41,25 +47,25 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             <a
-              href="#explore"
+              href="/#explore"
               className={`text-sm font-medium transition-colors hover:text-accent ${
-                isScrolled ? "text-muted-foreground" : "text-primary-foreground/80"
+                showSolidHeader ? "text-muted-foreground" : "text-primary-foreground/80"
               }`}
             >
               Explore Fields
             </a>
             <a
-              href="#stats"
+              href="/#stats"
               className={`text-sm font-medium transition-colors hover:text-accent ${
-                isScrolled ? "text-muted-foreground" : "text-primary-foreground/80"
+                showSolidHeader ? "text-muted-foreground" : "text-primary-foreground/80"
               }`}
             >
               Statistics
             </a>
             <a
-              href="#about"
+              href="/#about"
               className={`text-sm font-medium transition-colors hover:text-accent ${
-                isScrolled ? "text-muted-foreground" : "text-primary-foreground/80"
+                showSolidHeader ? "text-muted-foreground" : "text-primary-foreground/80"
               }`}
             >
               About
@@ -68,7 +74,7 @@ const Header = () => {
 
           {/* CTA */}
           <div className="hidden md:block">
-            <Button variant={isScrolled ? "default" : "hero"} size="sm">
+            <Button variant={showSolidHeader ? "default" : "hero"} size="sm">
               Get Started
             </Button>
           </div>
@@ -79,9 +85,9 @@ const Header = () => {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
-              <X className={`w-6 h-6 ${isScrolled ? "text-foreground" : "text-primary-foreground"}`} />
+              <X className={`w-6 h-6 ${showSolidHeader ? "text-foreground" : "text-primary-foreground"}`} />
             ) : (
-              <Menu className={`w-6 h-6 ${isScrolled ? "text-foreground" : "text-primary-foreground"}`} />
+              <Menu className={`w-6 h-6 ${showSolidHeader ? "text-foreground" : "text-primary-foreground"}`} />
             )}
           </button>
         </div>

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { ArrowLeft, BookOpen, Target, Lightbulb, TrendingUp, Users, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,6 +7,10 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const CareerGuide = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const steps = [
     {
       icon: Target,
@@ -61,7 +66,7 @@ const CareerGuide = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header alwaysVisible />
       
       <main className="pt-24 pb-16">
         <div className="container mx-auto px-4">

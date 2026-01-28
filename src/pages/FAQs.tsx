@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -11,6 +12,10 @@ import {
 } from "@/components/ui/accordion";
 
 const FAQs = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const faqs = [
     {
       question: "What is Scope Hope?",
@@ -66,7 +71,7 @@ const FAQs = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header alwaysVisible />
       
       <main className="pt-24 pb-16">
         <div className="container mx-auto px-4">
